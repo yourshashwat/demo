@@ -1,4 +1,4 @@
 # demo
 First Git repo
 <br>
-Author: Shubham Shashwat
+Author: Shubham Shashwat (NITK)
