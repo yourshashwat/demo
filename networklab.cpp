@@ -145,4 +145,98 @@ int main()
 }
 
 
+// Hamming code
+#include <bits/stdc++.h>
+using namespace std;
+
+int calculateRedundantBits(string s){
+    int r=0;
+    int p=s.length();
+    while(pow(2,r)<p+r+1) r++;
+    
+    return r;
+}
+
+int main() {
+	// your code goes here
+	string signal;
+	cout<<"Enter signal: ";
+	cin>>signal;
+	int r= calculateRedundantBits(signal);
+	int n= signal.length();
+	vector<int> v(n+r,0);
+	int i=0,rev=n-1;
+	for(int index=0; index<n+r; index++){
+	    if(pow(2,i)==index+1){
+	        i++;
+	        
+	    }
+	    else{
+	        v[index]= signal[rev--] - '0';
+	        
+	    }
+	    
+	}
+	
+	i=0;
+// 	while(pow(2,i)<=pow(2,r-1)){
+	    
+	    
+	    
+// 	}
+
+    for(int x:v){
+	    cout<<x<<" ";
+	}
+	cout<<endl;
+    // for(int index=0; index<n+r; index++){
+    //     int sum=0;
+    //     if(pow(2,i)==index+1){
+            
+    //         for(int j=0; j<n+r; j++){
+    //             if((j+1) & (1<<i)!=0){
+    //                 sum+=v[j];
+    //             }
+    //         }
+    //         i++;
+    //         if(sum%2!=0) v[index]=1;
+    //     }
+        
+        
+    // }
+    
+    for(int index=0; index<n+r; index++){
+    
+    if(pow(2,i)==index+1){
+        
+        int sum=0;
+        
+        for(int j=0; j<n+r; j++){
+            if((j+1) & (1<<i)){
+                sum += v[j];
+            }
+        }
+        
+        v[index] = sum % 2;
+        i++;
+    }
+}
+    
+    for(int x:v){
+	    cout<<x<<" ";
+	}
+	cout<<endl;
+    
+    //final result
+	reverse(v.begin(), v.end());
+	for(int x:v){
+	    cout<<x<<" ";
+	}
+	
+
+
+}
+
+
+
 
